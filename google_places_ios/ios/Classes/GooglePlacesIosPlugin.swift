@@ -58,9 +58,9 @@ public class GooglePlacesIosPlugin: NSObject, FlutterPlugin {
         }
         
         let locationRestrictionsDictionary = args?[Keys.locationRestriction.rawValue] as? Dictionary<String, Any?>
-        let restrictionNortheast = locationBiasDictionary == nil ? nil :  coordsFromJson(locationBiasDictionary!["northeast"] as! Dictionary<String, Any?>)
-        let restrictionSouthwest = locationBiasDictionary == nil ? nil :  coordsFromJson(locationBiasDictionary!["southwest"] as! Dictionary<String, Any?>)
-        
+        let restrictionNortheast = locationRestrictionsDictionary == nil ? nil : coordsFromJson(locationRestrictionsDictionary!["northeast"] as! Dictionary<String, Any?>)
+        let restrictionSouthwest = locationRestrictionsDictionary == nil ? nil : coordsFromJson(locationRestrictionsDictionary!["southwest"] as! Dictionary<String, Any?>)
+
         if(locationRestrictionsDictionary != nil){
             filter.locationRestriction = GMSPlaceRectangularLocationOption(restrictionNortheast!, restrictionSouthwest!)
         }
@@ -100,7 +100,9 @@ public class GooglePlacesIosPlugin: NSObject, FlutterPlugin {
                 if(placeFields == nil){
                     placeFields = PlaceFieldFromString(value: field)
                 }else{
-                    placeFields = GMSPlaceField(rawValue: UInt(placeFields!.rawValue) | UInt(PlaceFieldFromString(value: field).rawValue))
+                    placeFields = GMSPlaceField(
+                        rawValue: UInt64(placeFields!.rawValue) | UInt64(PlaceFieldFromString(value: field).rawValue)
+                    )
                 }
             }
         }

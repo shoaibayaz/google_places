@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'google_places_ios'
-  s.version          = '2.0.0'
+  s.version          = '2.1.0'
   s.summary          = 'iOS Pod for Google Places'
   s.description      = <<-DESC
 iOS Pod project for Google Places SDK.
@@ -19,8 +19,8 @@ DESC
   s.source_files     = 'Classes/**/*'
   s.dependency       'Flutter'
 
-  # IMPORTANT: must be >= 14.0 for modern GooglePlaces XCFramework
-  s.platform         = :ios, '14.0'
+  # IMPORTANT: must be >= 16.0 for GooglePlaces 10.8.0
+  s.platform         = :ios, '16.0'
 
   # IMPORTANT:
   # - DO NOT exclude arm64 for simulator
@@ -35,5 +35,5 @@ DESC
 
   # IMPORTANT:
   # Use XCFramework-based Google Places SDK (supports simulator)
-  s.dependency 'GooglePlaces', '>= 7.3.0'
+  s.dependency 'GooglePlaces', '10.8.0'
 end
